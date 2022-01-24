@@ -1,4 +1,4 @@
-name: Test and Build with Maven
+name: Test with Maven
 
 on:
   push:
@@ -41,11 +41,3 @@ jobs:
 
       - name: Run Maven Tests
         run: mvn -B test --file pom.xml
-
-      - name: Build Jar
-        if: github.ref == 'refs/heads/master'
-        run: mvn -B install
-
-      - name: Build Jar
-        if: github.ref == 'refs/heads/master'
-        run: mvn -B clean install
