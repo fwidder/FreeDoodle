@@ -7,7 +7,7 @@ on:
     tags: [ 'v*.*.*' ]
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build:
@@ -43,9 +43,9 @@ jobs:
         run: mvn -B test --file pom.xml
 
       - name: Build Jar
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: mvn -B install
 
       - name: Build Jar
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: mvn -B clean install
