@@ -1,6 +1,17 @@
 name: Test
 
-on: [push, pull_request]
+on:
+  push:
+    branches:    
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+      - '!master'   # excludes master
+  pull_request:
+    branches:     
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
 
 jobs:
   build:
@@ -28,4 +39,3 @@ jobs:
 
       - name: Run Maven Tests
         run: mvn -B test --file pom.xml
-        
