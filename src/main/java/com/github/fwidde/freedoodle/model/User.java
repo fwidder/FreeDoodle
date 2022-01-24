@@ -18,10 +18,9 @@ import javax.persistence.Id;
 @Entity
 public class User {
 
+    @Column(nullable = false, unique = true)
+    String name;
     @Id
     @GeneratedValue
     private Long id;
-
-    @Column(nullable = false, unique = true)
-    String name;
 }

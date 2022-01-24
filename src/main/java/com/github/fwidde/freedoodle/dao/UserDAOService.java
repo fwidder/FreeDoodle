@@ -18,7 +18,7 @@ public class UserDAOService {
         this.userRepository = userRepository;
     }
 
-    public User findUserByPrincipal(Principal principal){
+    public User findUserByPrincipal(Principal principal) {
         return userRepository.findUserByName(principal.getName()).orElseThrow(() -> new UserNotFoundException(principal.getName()));
     }
 }

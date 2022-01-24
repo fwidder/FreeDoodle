@@ -26,7 +26,7 @@ public class DoodleDAOService {
         this.userDAOService = userDAOService;
     }
 
-    public Doodle createDoodle(String name, String description, List<LocalDate> dates, Principal principal){
+    public Doodle createDoodle(String name, String description, List<LocalDate> dates, Principal principal) {
         Assert.notBlank(name, "Name");
         Assert.notBlank(name, "Description");
         Assert.notEmpty(dates, "Date List");
