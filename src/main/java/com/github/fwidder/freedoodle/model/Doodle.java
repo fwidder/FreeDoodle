@@ -26,7 +26,7 @@ public class Doodle {
 	private String name;
 	
 	@Column
-	private UserDetails creator;
+	private String creator;
 	
 	@Column
 	private String description;

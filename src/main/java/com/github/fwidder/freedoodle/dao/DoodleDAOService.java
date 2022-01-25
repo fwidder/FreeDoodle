@@ -33,7 +33,7 @@ public class DoodleDAOService {
 		Assert.notNull(principal, "Principal");
 		
 		Doodle doodle = Doodle.builder()
-				.creator(userDAOService.findUserByPrincipal(principal))
+				.creator(userDAOService.findUserByPrincipal(principal).getUsername())
 				.dates(dates)
 				.description(description)
 				.name(name)
