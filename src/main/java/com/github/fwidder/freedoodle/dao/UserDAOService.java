@@ -34,7 +34,7 @@ public class UserDAOService {
 		throw new UserNotFoundException(name);
 	}
 	
-	public void addUser(String name, String email, String password) {
+	public void addUser(String name, String password) {
 		UserDetails user = User.withUsername(name).password(passwordEncoder.encode(password)).roles("USER").build();
 		
 		userDetailsManager.createUser(user);
