@@ -45,7 +45,7 @@ public class UserDAOService {
 		userDetailsManager.createUser(user);
 	}
 	
-	public void deleteUser(Principal principal){
+	public void deleteUser(Principal principal) {
 		Assert.notNull(principal, "Principal");
 		deleteUser(principal.getName());
 	}
