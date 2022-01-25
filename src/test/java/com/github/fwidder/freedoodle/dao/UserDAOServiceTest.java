@@ -1,5 +1,8 @@
 package com.github.fwidder.freedoodle.dao;
 
+import com.github.fwidder.freedoodle.util.Assert;
+import com.github.fwidder.freedoodle.util.UserNotFoundException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +51,14 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
+	void findUserByNameNotFound() {
+		assertThat(userDetailsManager.userExists("Test"), is(false));
+		
+		UserNotFoundException ex = Assertions.assertThrows(UserNotFoundException.class, () -> userDAOService.findUserByName("Test"));
+	}
+	
+	@Test
+	@DirtiesContext
 	void addUser() {
 		assertThat(userDetailsManager.userExists("Test"), is(false));
 		
@@ -58,9 +69,44 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
-	void deleteUser() {
+	void addUserExists() {
+		assertThat(userDetailsManager.userExists("Test"), is(false));
+		
 		userDAOService.addUser("Test", "Test");
+		
+		assertThat(userDetailsManager.userExists("Test"), is(true));
+		
+		IllegalArgumentException ex = Assertions.assertThrows(IllegalArgumentException.class, () -> userDAOService.addUser("Test", "Test2"));
+		
+	}
+	
+	@Test
+	@DirtiesContext
+	void deleteUserByName() {
+		userDAOService.addUser("Test", "Test");
+		
+		assertThat(userDetailsManager.userExists("Test"), is(true));
+		
 		userDAOService.deleteUser("Test");
+		
+		assertThat(userDetailsManager.userExists("Test"), is(false));
+	}
+	@Test
+	@DirtiesContext
+	void deleteUserByNameNotFound() {
+		assertThat(userDetailsManager.userExists("Test"), is(false));
+		
+		UserNotFoundException ex = Assertions.assertThrows(UserNotFoundException.class, () -> userDAOService.deleteUser("Test"));
+	}
+	
+	@Test
+	@DirtiesContext
+	void deleteUserByPrincipal() {
+		userDAOService.addUser("Test", "Test");
+		
+		assertThat(userDetailsManager.userExists("Test"), is(true));
+		
+		userDAOService.deleteUser(() -> "Test");
 		
 		assertThat(userDetailsManager.userExists("Test"), is(false));
 	}
