@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.test.annotation.DirtiesContext;
@@ -79,7 +80,7 @@ class UserDAOServiceTest {
 		
 		assertThat(userDetailsManager.userExists("Test"), is(true));
 		
-		IllegalArgumentException ex = Assertions.assertThrows(IllegalArgumentException.class, () -> userDAOService.addUser("Test", "Test2"));
+		DuplicateKeyException ex = Assertions.assertThrows(DuplicateKeyException.class, () -> userDAOService.addUser("Test", "Test2"));
 		
 	}
 	
