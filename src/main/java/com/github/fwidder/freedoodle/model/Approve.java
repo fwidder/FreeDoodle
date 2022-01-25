@@ -1,4 +1,4 @@
-package com.github.fwidde.freedoodle.model;
+package com.github.fwidder.freedoodle.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,13 +16,13 @@ import java.util.Map;
 
 @Entity
 public class Approve {
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    @Column(nullable = false)
-    private String name;
-
-    @ElementCollection
-    private Map<LocalDate, Answer> answers;
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Column( nullable = false )
+	private String name;
+	
+	@ElementCollection
+	private Map<LocalDate, Answer> answers;
 }
