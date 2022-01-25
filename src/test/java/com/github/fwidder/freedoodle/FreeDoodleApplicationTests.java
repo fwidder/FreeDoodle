@@ -1,13 +1,13 @@
-package com.github.fwidde.freedoodle;
+package com.github.fwidder.freedoodle;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class FreeDoodleApplicationTests {
-
-    @Test
-    void contextLoads() {
-    }
-
+	
+	@Test
+	void contextLoads() {
+	}
+	
 }
