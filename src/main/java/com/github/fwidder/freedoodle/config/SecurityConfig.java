@@ -49,10 +49,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			throws Exception {
 		jdbcUserDetailsManager = auth.jdbcAuthentication()
 				.dataSource(dataSource)
-				.withDefaultSchema()
 				.withUser(User.withUsername(adminUsername)
 						.password(passwordEncoder.encode(adminPassword))
-						.roles("USER", "ADMIN")).getUserDetailsService();
+						.roles("USER", "ADMIN"))
+				.passwordEncoder(passwordEncoder)
+				.getUserDetailsService();
 	}
 	
 	protected void configure(HttpSecurity http) throws Exception {
