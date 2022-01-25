@@ -1,6 +1,5 @@
 package com.github.fwidder.freedoodle.dao;
 
-import com.github.fwidder.freedoodle.util.Assert;
 import com.github.fwidder.freedoodle.util.UserNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,8 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.test.annotation.DirtiesContext;
-
-import java.security.Principal;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -32,7 +29,7 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
-	@DisplayName("findUserByPrincipal() user exists.")
+	@DisplayName( "findUserByPrincipal() user exists." )
 	void findUserByPrincipal() {
 		userDAOService.addUser("Test", "Test");
 		
@@ -43,7 +40,7 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
-	@DisplayName("findUserByName() user exists.")
+	@DisplayName( "findUserByName() user exists." )
 	void findUserByName() {
 		userDAOService.addUser("Test", "Test");
 		
@@ -54,7 +51,7 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
-	@DisplayName("findUserByName() user not exists.")
+	@DisplayName( "findUserByName() user not exists." )
 	void findUserByNameNotFound() {
 		assertThat(userDetailsManager.userExists("Test"), is(false));
 		
@@ -63,7 +60,7 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
-	@DisplayName("addUser() new User.")
+	@DisplayName( "addUser() new User." )
 	void addUser() {
 		assertThat(userDetailsManager.userExists("Test"), is(false));
 		
@@ -74,7 +71,7 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
-	@DisplayName("addUser() existing User.")
+	@DisplayName( "addUser() existing User." )
 	void addUserExists() {
 		assertThat(userDetailsManager.userExists("Test"), is(false));
 		
@@ -88,7 +85,7 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
-	@DisplayName("deleteUserByName() existing User.")
+	@DisplayName( "deleteUserByName() existing User." )
 	void deleteUserByName() {
 		userDAOService.addUser("Test", "Test");
 		
@@ -98,9 +95,10 @@ class UserDAOServiceTest {
 		
 		assertThat(userDetailsManager.userExists("Test"), is(false));
 	}
+	
 	@Test
 	@DirtiesContext
-	@DisplayName("deleteUserByName() non existing User.")
+	@DisplayName( "deleteUserByName() non existing User." )
 	void deleteUserByNameNotFound() {
 		assertThat(userDetailsManager.userExists("Test"), is(false));
 		
@@ -109,7 +107,7 @@ class UserDAOServiceTest {
 	
 	@Test
 	@DirtiesContext
-	@DisplayName("deleteUserByPrincipal() existing User.")
+	@DisplayName( "deleteUserByPrincipal() existing User." )
 	void deleteUserByPrincipal() {
 		userDAOService.addUser("Test", "Test");
 		
@@ -118,5 +116,15 @@ class UserDAOServiceTest {
 		userDAOService.deleteUser(() -> "Test");
 		
 		assertThat(userDetailsManager.userExists("Test"), is(false));
+	}
+	
+	@Test
+	void updatePassword() {
+		//TODO
+	}
+	
+	@Test
+	void testUpdatePassword() {
+		//TODO
 	}
 }

@@ -23,6 +23,6 @@ public class Approve {
 	@Column( nullable = false )
 	private String name;
 	
-	@ElementCollection
+	@ElementCollection( fetch = FetchType.EAGER )
 	private Map<LocalDate, Answer> answers;
 }

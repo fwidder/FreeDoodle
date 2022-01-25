@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -31,9 +30,9 @@ public class Doodle {
 	@Column
 	private String description;
 	
-	@ElementCollection
-	private List<LocalDate> dates;
+	@ElementCollection( fetch = FetchType.EAGER )
+	private Set<LocalDate> dates;
 	
-	@OneToMany
-	private List<Approve> approves;
+	@OneToMany( fetch = FetchType.EAGER )
+	private Set<Approve> approves;
 }

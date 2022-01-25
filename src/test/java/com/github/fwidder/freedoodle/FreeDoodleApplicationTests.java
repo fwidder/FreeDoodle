@@ -10,7 +10,7 @@ class FreeDoodleApplicationTests {
 	
 	@Test
 	@DirtiesContext
-	@DisplayName("Application StartUp")
+	@DisplayName( "Application StartUp" )
 	void contextLoads() {
 	}
 	
