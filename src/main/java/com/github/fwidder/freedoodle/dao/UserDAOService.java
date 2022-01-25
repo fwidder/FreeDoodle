@@ -57,4 +57,19 @@ public class UserDAOService {
 		else
 			throw new UserNotFoundException(name);
 	}
+	
+	public void updatePassword(Principal principal, String oldPassword, String newPassword) {
+		Assert.notNull(principal, "Principal");
+		updatePassword(principal.getName(), oldPassword, newPassword);
+	}
+	
+	public void updatePassword(String name, String oldPassword, String newPassword) {
+		Assert.notBlank(name, "name");
+		Assert.notBlank(oldPassword, "Old Password");
+		Assert.notBlank(newPassword, "New Password");
+		if( userDetailsManager.userExists(name) )
+			userDetailsManager.changePassword(oldPassword, newPassword);
+		else
+			throw new UserNotFoundException(name);
+	}
 }

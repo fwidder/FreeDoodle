@@ -117,4 +117,14 @@ class UserDAOServiceTest {
 		
 		assertThat(userDetailsManager.userExists("Test"), is(false));
 	}
+	
+	@Test
+	void updatePassword() {
+		//TODO
+	}
+	
+	@Test
+	void testUpdatePassword() {
+		//TODO
+	}
 }
