@@ -5,6 +5,7 @@ import com.github.fwidder.freedoodle.api.v1.user.model.UpdatePasswordCurrentUser
 import com.github.fwidder.freedoodle.api.v1.user.model.UserResponse;
 import com.github.fwidder.freedoodle.dao.UserDAOService;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.security.Principal;
 public class UserRestApi {
 	private final UserDAOService userDAOService;
 	
+	@Autowired
 	public UserRestApi(UserDAOService userDAOService) {
 		this.userDAOService = userDAOService;
 	}

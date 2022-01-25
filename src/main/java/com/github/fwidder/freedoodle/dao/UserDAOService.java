@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
@@ -16,11 +16,11 @@ import java.security.Principal;
 @Flogger
 public class UserDAOService {
 	
-	private final UserDetailsManager userDetailsManager;
+	private final JdbcUserDetailsManager userDetailsManager;
 	private final PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public UserDAOService(UserDetailsManager userDetailsManager, PasswordEncoder passwordEncoder) {
+	public UserDAOService(JdbcUserDetailsManager userDetailsManager, PasswordEncoder passwordEncoder) {
 		this.userDetailsManager = userDetailsManager;
 		this.passwordEncoder = passwordEncoder;
 	}
