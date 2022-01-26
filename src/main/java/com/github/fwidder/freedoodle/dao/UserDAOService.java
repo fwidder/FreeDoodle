@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import java.security.Principal;
 
-@Service
 @Flogger
+@Service
 public class UserDAOService {
 	
 	private final JdbcUserDetailsManager userDetailsManager;

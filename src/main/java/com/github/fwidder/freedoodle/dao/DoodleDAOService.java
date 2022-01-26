@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-@Service
 @Flogger
+@Service
 public class DoodleDAOService {
 	private final ApproveRepository approveRepository;
 	private final DoodleRepository doodleRepository;
@@ -105,6 +105,10 @@ public class DoodleDAOService {
 			doodle.getApproves().add(approve);
 		}
 		return approve;
+	}
+	
+	public List<Doodle> findAll() {
+		return doodleRepository.findAll();
 	}
 	
 }

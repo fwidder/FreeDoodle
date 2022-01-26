@@ -24,10 +24,10 @@ public class Doodle {
 	@Column( nullable = false )
 	private String name;
 	
-	@Column
+	@Column( nullable = false )
 	private String creator;
 	
-	@Column
+	@Column( nullable = false )
 	private String description;
 	
 	@ElementCollection( fetch = FetchType.EAGER )

@@ -5,6 +5,7 @@ import com.github.fwidder.freedoodle.api.v1.user.model.UpdatePasswordCurrentUser
 import com.github.fwidder.freedoodle.api.v1.user.model.UserResponse;
 import com.github.fwidder.freedoodle.dao.UserDAOService;
 import io.swagger.v3.oas.annotations.Operation;
+import lombok.extern.flogger.Flogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.security.Principal;
 
+@Flogger
 @RestController
 @RequestMapping( "/api/v1/user" )
 public class UserRestApi {
@@ -71,7 +73,7 @@ public class UserRestApi {
 	@Secured( "ROLE_USER" )
 	@ResponseStatus( HttpStatus.OK )
 	@Operation( description = "Update current Users Password" )
-	@PatchMapping( produces = MediaType.APPLICATION_JSON_VALUE )
+	@PatchMapping( consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<?> updatePasswordCurrentUser(@RequestBody UpdatePasswordCurrentUserRequest body, Principal principal) {
 		userDAOService.updatePassword(principal, body.getOld_password(), body.getNew_password());
 		return ResponseEntity.ok().build();
