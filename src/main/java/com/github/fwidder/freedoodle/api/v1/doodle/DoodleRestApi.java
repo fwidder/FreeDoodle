@@ -30,9 +30,36 @@ public class DoodleRestApi {
 	@Secured( "ROLE_USER" )
 	@ResponseStatus( HttpStatus.OK )
 	@Operation( description = "Get a list with all Doodles" )
-	@GetMapping( produces = MediaType.APPLICATION_JSON_VALUE )
+	@GetMapping( value = "/all", produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<List<Doodle>> getAllDoodels() {
 		List<Doodle> doodles = doodleDAOService.findAll();
+		return ResponseEntity.ok(doodles);
+	}
+	
+	@Secured( "ROLE_USER" )
+	@ResponseStatus( HttpStatus.OK )
+	@Operation( description = "Get a list with Doodles created by the current User" )
+	@GetMapping( produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<List<Doodle>> getDoodelsFromCurrentUser(Principal principal) {
+		List<Doodle> doodles = doodleDAOService.findDoodlesByPrincipal(principal);
+		return ResponseEntity.ok(doodles);
+	}
+	
+	@Secured( "ROLE_USER" )
+	@ResponseStatus( HttpStatus.OK )
+	@Operation( description = "Get a  Doodles by ID" )
+	@GetMapping( value = "/id/{id}", produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<Doodle> getDoodelById(@PathVariable( "id" ) Long id) {
+		Doodle doodles = doodleDAOService.findDoodleById(id);
+		return ResponseEntity.ok(doodles);
+	}
+	
+	@Secured( "ROLE_USER" )
+	@ResponseStatus( HttpStatus.OK )
+	@Operation( description = "Get Doodles by Name" )
+	@GetMapping( value = "/name/{name}", produces = MediaType.APPLICATION_JSON_VALUE )
+	public ResponseEntity<List<Doodle>> getDoodelsByName(@PathVariable( "name" ) String name) {
+		List<Doodle> doodles = doodleDAOService.findDoodlesByName(name);
 		return ResponseEntity.ok(doodles);
 	}
 	

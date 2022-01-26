@@ -46,7 +46,7 @@ public class UserRestApi {
 	@Operation( description = "Create a new User" )
 	@ResponseStatus( HttpStatus.CREATED )
 	@PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<?> addNewUser(@RequestBody AddNewUserRequest body) {
+	public ResponseEntity<?> createUser(@RequestBody AddNewUserRequest body) {
 		userDAOService.addUser(body.getName(), body.getPassword());
 		return ResponseEntity.created(URI.create("/api/v1/user/" + body.getName())).build();
 	}
