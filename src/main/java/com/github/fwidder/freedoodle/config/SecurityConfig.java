@@ -55,12 +55,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/api-docs/**", "/api-docs/", "/api-docs.yaml", "/swagger-ui.html", "/swagger-ui/**").permitAll()
 				// H2
 				.antMatchers("/h2-console/**", "/h2-console/").permitAll()
-				//API
+				// API
 				.antMatchers("/api/**").authenticated()
-				//Everything else
-				.anyRequest().fullyAuthenticated()
-				// Config
+				// Web
+				.antMatchers("/web/public/**").permitAll()
+				.antMatchers("/web/private/**").authenticated()
+				// Web Jars
+				.antMatchers("/webjars/**").permitAll()
+				// Everything else
+				.anyRequest().authenticated()
+				// Login
+				.and().formLogin()
+				.loginPage("/web/public/login").permitAll()
+				.failureUrl("/web/public/login?loginError=true")
+				.defaultSuccessUrl("/web/private/profile?login=true", true)
+				// Logout
+				.and().logout()
+				.logoutUrl("/web/public/logout").permitAll()
+				.logoutSuccessUrl("/web/public/index?logout=true")
+				// HTTP Auth
 				.and().httpBasic()
+				// Other
 				.and().csrf().disable()
 				.headers().frameOptions().disable();
 	}

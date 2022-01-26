@@ -1,6 +1,6 @@
 package com.github.fwidder.freedoodle.api.v1.user;
 
-import com.github.fwidder.freedoodle.api.v1.user.model.AddNewUserRequest;
+import com.github.fwidder.freedoodle.api.v1.user.model.CreateUserRequest;
 import com.github.fwidder.freedoodle.api.v1.user.model.UpdatePasswordCurrentUserRequest;
 import com.github.fwidder.freedoodle.api.v1.user.model.UserResponse;
 import com.github.fwidder.freedoodle.dao.UserDAOService;
@@ -46,7 +46,7 @@ public class UserRestApi {
 	@Operation( description = "Create a new User" )
 	@ResponseStatus( HttpStatus.CREATED )
 	@PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<?> createUser(@RequestBody AddNewUserRequest body) {
+	public ResponseEntity<?> createUser(@RequestBody CreateUserRequest body) {
 		userDAOService.addUser(body.getName(), body.getPassword());
 		return ResponseEntity.created(URI.create("/api/v1/user/" + body.getName())).build();
 	}

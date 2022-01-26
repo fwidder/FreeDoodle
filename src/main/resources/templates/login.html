@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<h1>Login page</h1>
+<p class="error"
+   th:if="${#request.getParameter('loginError') != null and #request.getParameter('loginError') == 'true'}">Wrong user
+    or password</p>
+<form method="post" th:action="@{/web/public/login}">
+    <label for="username">Username</label>:
+    <input autofocus="autofocus" id="username" name="username" type="text"/> <br/>
+    <label for="password">Password</label>:
+    <input id="password" name="password" type="password"/> <br/>
+    <input type="submit" value="Log in"/>
+</form>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
