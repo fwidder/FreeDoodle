@@ -3,12 +3,20 @@
     {
       "name": "admin.username",
       "type": "java.lang.String",
+      "defaultValue": "admin",
       "description": "Username for the Admin User."
     },
     {
       "name": "admin.password",
       "type": "java.lang.String",
+      "defaultValue": "admin",
       "description": "Password for the Admin User."
+    },
+    {
+      "name": "admin.forceCreate",
+      "type": "java.lang.Boolean",
+      "defaultValue": false,
+      "description": "\"true\" if Admin User Creation should be enforced, even if the Admin User already exists."
     }
   ]
 }
