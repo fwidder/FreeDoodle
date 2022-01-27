@@ -27,7 +27,7 @@ public class Doodle {
 	@Column( nullable = false )
 	private String creator;
 	
-	@Column( nullable = false )
+	@Column(nullable = false, length = 10000)
 	private String description;
 	
 	@ElementCollection( fetch = FetchType.EAGER )

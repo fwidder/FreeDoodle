@@ -17,12 +17,15 @@ import javax.persistence.Id;
 @Entity
 public class Users {
 	@Id
-	@Column( name = "username", nullable = false )
+	@Column(name = "username", nullable = false)
 	private String username;
-	
-	@Column( name = "password", nullable = false )
+
+	@Column(name = "password", nullable = false)
 	private String password;
-	
-	@Column( name = "enabled", nullable = false )
+
+	@Column(name = "enabled", nullable = false)
 	private boolean enabled;
+
+	@Column
+	private String email;
 }

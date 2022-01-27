@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<header th:insert="fragments/header :: header"></header>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Creator</th>
+        <th scope="col">Dates</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="doodle: ${doodles}">
+        <td><a th:href="'/web/private/doodle/' + ${doodle.getId()}" th:text="${doodle.getId()}"></a></td>
+        <td><a th:href="'/web/private/doodle/' + ${doodle.getId()}" th:text="${doodle.getName()}"></a></td>
+        <td><a th:href="'/web/private/users/' + ${doodle.getCreator()}" th:text="${doodle.getCreator()}"></a></td>
+        <td><p th:each="date: ${doodle.getDates()}" th:text="${date}"></p></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>
