@@ -34,8 +34,22 @@ public class PrivateController {
 
 	@GetMapping(value = "/myDoodles")
 	public ModelAndView myDoodles(Principal principal) {
-		ModelAndView modelAndView = new ModelAndView("myDoodles");
+		ModelAndView modelAndView = new ModelAndView("doodles");
 		modelAndView.addObject("doodles", doodleDAOService.findDoodlesByPrincipal(principal));
+		return modelAndView;
+	}
+
+	@GetMapping(value = "/allDoodles")
+	public ModelAndView allDoodles() {
+		ModelAndView modelAndView = new ModelAndView("doodles");
+		modelAndView.addObject("doodles", doodleDAOService.findAll());
+		return modelAndView;
+	}
+
+	@GetMapping(value = "/addDoodle")
+	public ModelAndView addDoodle() {
+		ModelAndView modelAndView = new ModelAndView("addDoodle");
+		modelAndView.addObject("doodleService", doodleDAOService);
 		return modelAndView;
 	}
 }
