@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jre-alpine
+FROM eclipse-temurin:19-jre-alpine
 
 MAINTAINER  Florian Widder <florian.widder@live.de>
 
